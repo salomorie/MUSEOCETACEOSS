@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSEOCETACEOS</title>
+    <!-- Libreria de Aframe -->
+     <script src="https://aframe.io/releases/1.8.0/aframe.min.js"></script>
+</head>
+<body>
+    <!-- Aqui van los recursos del proyecto -->
+     <a-assets>
+        <!-- Imagenes -->
+        <img id="roof" src="assets/roof.jpg">
+        <img id="wall" src="assets/wall.jpg">
+        <img id="floor" src="assets/floor.jpg">
+        <img id="wall2" src="assets/wallfish.jpg">
+        <img id="belu" src="assets/belu.jpg">
+        <img id="nar" src="assets/narval.jpg">
+        <img id="joro" src="assets/joro.jpg">
+        <img id="cacha" src="assets/cachalot.jpg">
+        <img id="orca" src="assets/orca.jpg">
+        <img id="delf" src="assets/delfin.jpg">
+        <img id="ceta" src="assets/cetaceo.jpg">
+        <img id="ficbelu" src="assets/ficbelu.jpg">
+        <img id="ficnar" src="assets/ficnar.jpg">
+        <img id="ficjoro" src="assets/ficjoro.jpg">
+        <img id="ficcacha" src="assets/ficcacha.jpg">
+        <img id="ficorca" src="assets/ficorca.jpg">
+        <img id="ficdel" src="assets/ficdel.jpg">
+        <img id="ficazul" src="assets/ficazul.jpg">
+        <img id="alfo" src="assets/alfombraremo.png">
+        <img id="marco" src="assets/marcoremo.png">
+        <!-- Carga de Modelo 3D -->
+        <a-assets-item id="mode" src="./assets/blue_whale_skeleton.glb"></a-assets-item>
+     </a-assets>
+    <!-- Escena del proyecto VR -->
+     <a-scene xr-mode-ui="enterAREnabled: false">
+        <a-entity camera look-controls position="0 1.6 2.5"></a-entity>
+        <!-- 
+        -------------------------------------
+                ESTRUCTURA DEL MUSEO 
+        -------------------------------------
+        -->
+        <!-- Piso -->
+        <a-plane src="#floor" material="src: #floor; repeat: 9.76 9.67" rotation="-90 0 0" width="10" height="10"></a-plane>
+        <!-- Alfombra -->
+        <a-plane src="#alfo" position="0 0.01 0" material="src: #alfo; transparent: true" rotation="-90 0 0" scale="15.157 15.157 15.157" width="0.45" height="0.55"></a-plane>
+        <!-- Muro fondo -->
+         <a-plane src="#wall2" material="src: #wall2; repeat: 1.61 1" position="0 2 -5" width="10" height="4"></a-plane>
+        <!-- Muro izquierdo -->
+         <a-plane src="#wall" material="src: #wall; repeat: 2.38 2.42" position="-5 2 0" rotation="0 90 0" width="10" height="4"></a-plane>
+        <!-- Muro derecho -->
+        <a-plane src="#wall" material="src: #wall; repeat: 2.38 2.42" position="5 2 0" rotation="0 -90 0" width="10" height="4"></a-plane>
+         <!-- Muro frontal -->
+        <a-plane src="#wall" material="src: #wall; repeat: 2.38 2.42" position="0 2 5" rotation="0 180 0" width="10" height="4"></a-plane>
+        <!-- Poster -->
+        <a-plane src="#ceta" position="0 1.959 4.936" scale="2.99 1.1 1" rotation="0 180 0" width="2" height="3"></a-plane>
+        <!-- Techo -->
+        <a-plane src="#roof" material="src: #roof; repeat: 3.28 1.33" position="0 4 0" rotation="90 0 0" width="10" height="10"></a-plane>
+        <!-- 
+        -------------------------------------
+                  OBRAS Y MODELOS
+        -------------------------------------
+        -->
+        <!-- Cuadros -->
+         <!-- Izquierda 1 -->
+        <a-plane src="#belu" position="-4.886 2.264 2.788" rotation="0 90 0" width="2" height="2"></a-plane>
+        <a-plane src="#marco" position="-4.879 2.264 2.788" rotation="0 90 0" material="src: #marco; transparent: true" width="2.1" height="2.1"></a-plane>
+        <!-- Izquerda 2 -->
+        <a-plane src="#nar" position="-4.886 2.264 -0.016" rotation="0 90 0" width="2" height="2"></a-plane>
+        <a-plane src="#marco" position="-4.879 2.264 -0.016" rotation="0 90 0" material="src: #marco; transparent: true" width="2.1" height="2.1"></a-plane>
+        <!-- Izquerda 3 -->
+        <a-plane src="#joro" position="-4.886 2.264 -2.788" rotation="0 90 0" width="2" height="2"></a-plane>
+        <a-plane src="#marco" position="-4.879 2.264 -2.788" rotation="0 90 0" material="src: #marco; transparent: true" width="2.1" height="2.1"></a-plane>
+        <!-- Derecha 1 -->
+        <a-plane src="#cacha" position="4.886 2.264 2.788" rotation="0 -90 0" width="2" height="2"></a-plane>
+        <a-plane src="#marco" position="4.879 2.264 2.788" rotation="0 -90 0" material="src: #marco; transparent: true" width="2.1" height="2.1"></a-plane>
+        <!-- Derecha 2 -->
+        <a-plane src="#orca" position="4.886 2.264 -0.016" rotation="0 -90 0" width="2" height="2"></a-plane>
+        <a-plane src="#marco" position="4.879 2.264 -0.016" rotation="0 -90 0" material="src: #marco; transparent: true" width="2.1" height="2.1"></a-plane>
+        <!-- Derecha 3 -->
+        <a-plane src="#delf" position="4.886 2.264 -2.788" rotation="0 -90 0" width="2" height="2"></a-plane>
+        <a-plane src="#marco" position="4.879 2.264 -2.788" rotation="0 -90 0" material="src: #marco; transparent: true" width="2.1" height="2.1"></a-plane>
+        <!-- Elementos 3D -->
+         <!-- Atriles -->
+          <!-- Atril Izquierda 1 -->
+         <a-box color="white" position="-4.3 1.02 2.769" rotation="0 0 -30.47" scale="0.69 0.16 1.11" depth="1" height="1" width="1"></a-box>
+         <a-cylinder color="white" position="-4.406 0.511 2.791" rotation="0 0 0" scale="0.15 10.02 0.15" radius="0.5" height="0.1"></a-cylinder>
+         <a-plane src="#ficbelu" position="-4.257 1.093 2.767" rotation="-59.86 90 0" scale="1.05 0.68 1.11" depth="1" height="1" width="1"></a-plane>
+          <!-- Atril Izquierda 2 -->
+         <a-box color="white" position="-4.3 1.02 -0.016" rotation="0 0 -30.47" scale="0.69 0.16 1.11" depth="1" height="1" width="1"></a-box>
+         <a-cylinder color="white" position="-4.406 0.511 -0.016" rotation="0 0 0" scale="0.15 10.02 0.15" radius="0.5" height="0.1"></a-cylinder>
+         <a-plane src="#ficnar" position="-4.257 1.093 -0.016" rotation="-59.86 90 0" scale="1.05 0.68 1.11" depth="1" height="1" width="1"></a-plane>
+          <!-- Atril Izquierda 3 -->
+         <a-box color="white" position="-4.3 1.02 -2.788" rotation="0 0 -30.47" scale="0.69 0.16 1.11" depth="1" height="1" width="1"></a-box>
+         <a-cylinder color="white" position="-4.406 0.511 -2.788" rotation="0 0 0" scale="0.15 10.02 0.15" radius="0.5" height="0.1"></a-cylinder>
+         <a-plane src="#ficjoro" position="-4.257 1.093 -2.788" rotation="-59.86 90 0" scale="1.05 0.68 1.11" depth="1" height="1" width="1"></a-plane>
+          <!-- Atril Derecha 1 -->
+         <a-box color="white" position="4.3 1.02 2.769" rotation="0 0 30.47" scale="0.69 0.16 1.11" depth="1" height="1" width="1"></a-box>
+         <a-cylinder color="white" position="4.406 0.511 2.791" rotation="0 0 0" scale="0.15 10.02 0.15" radius="0.5" height="0.1"></a-cylinder>
+         <a-plane src="#ficcacha" position="4.257 1.105 2.767" rotation="-59.47 270 0" scale="1.05 0.68 1.11" depth="1" height="1" width="1"></a-plane>
+          <!-- Atril Derecha 2 -->
+         <a-box color="white" position="4.3 1.02 -0.016" rotation="0 0 30.47" scale="0.69 0.16 1.11" depth="1" height="1" width="1"></a-box>
+         <a-cylinder color="white" position="4.406 0.511 -0.016" rotation="0 0 0" scale="0.15 10.02 0.15" radius="0.5" height="0.1"></a-cylinder>
+         <a-plane src="#ficorca" position="4.257 1.093 -0.016" rotation="-59.86 270 0" scale="1.05 0.68 1.11" depth="1" height="1" width="1"></a-plane>
+          <!-- Atril Derecha 3 -->
+         <a-box color="white" position="4.3 1.02 -2.788" rotation="0 0 30.47" scale="0.69 0.16 1.11" depth="1" height="1" width="1"></a-box>
+         <a-cylinder color="white" position="4.406 0.511 -2.788" rotation="0 0 0" scale="0.15 10.02 0.15" radius="0.5" height="0.1"></a-cylinder>
+         <a-plane src="#ficdel" position="4.257 1.093 -2.788" rotation="-59.86 270 0" scale="1.05 0.68 1.11" depth="1" height="1" width="1"></a-plane>
+        <!-- Escultura ballena -->
+        <!-- Base -->
+        <a-box color="white" position="0 0.068 -3.732" rotation="0 0 0" scale="5.46 0.32 1.11" depth="1" height="1" width="1"></a-box>
+        <a-cylinder color="white" position="-0.54 0.897 -3.609" rotation="0 0 0" scale="0.16 24.65 0.13" radius="0.5" height="0.1"></a-cylinder>
+        <!-- Ballena 3D -->
+        <a-gltf-model rotation="-11.87 90 0" position="1.782 1.424 -3.636" scale="0.5 0.5 0.5" src="#mode"></a-gltf-model>
+        <!-- Atril Ballena -->
+        <a-box color="white" position="-1.716 1.034 -2.671" rotation="31.02 0 0" scale="1.38 0.16 1.11" depth="1" height="1" width="1"></a-box>
+        <a-cylinder color="white" position="-1.732 0.511 -2.621" rotation="0 0 0" scale="0.15 10.02 0.15" radius="0.5" height="0.1"></a-cylinder>
+         <a-plane src="#ficazul" position="-1.716 1.103 -2.618" rotation="-59.15 0 0" scale="1.32 1.03 1.11" depth="1" height="1" width="1"></a-plane>
+         <!-- Luces -->
+          <!-- ambientación -->
+        <a-light light="type: ambient; color: #a9defe; intensity: 1.87" position="0 3.351 0"></a-light>
+        <!-- luz cuadro 1 izquierda -->
+        <a-light light="type: spot; color: #ffffff; intensity: 21.65; decay: 0.79; angle: 11.36; penumbra: 0.21" position="-4.3 7.789 3.024" rotation="-87.26147219842437 -0.2291831180523293 0.2864788975654116"></a-light>
+        <!-- luz cuadro 2 izquierda -->
+        <a-light light="type: spot; color: #ffffff; intensity: 21.65; decay: 0.79; angle: 11.36; penumbra: 0.21" position="-4.3 7.789 -0.016" rotation="-87.26147219842437 -0.2291831180523293 0.2864788975654116"></a-light>
+        <!-- luz cuadro 3 izquierda -->
+        <a-light light="type: spot; color: #ffffff; intensity: 21.65; decay: 0.79; angle: 11.36; penumbra: 0.21" position="-4.3 7.789 -2.788" rotation="-87.26147219842437 -0.2291831180523293 0.2864788975654116"></a-light>
+        <!-- luz cuadro 1 derecha -->
+        <a-light light="type: spot; color: #ffffff; intensity: 21.65; decay: 0.79; angle: 11.36; penumbra: 0.21" position="4.3 7.789 3.024" rotation="-87.26147219842437 -0.2291831180523293 0.2864788975654116"></a-light>
+        <!-- luz cuadro 2 derecha -->
+        <a-light light="type: spot; color: #ffffff; intensity: 21.65; decay: 0.79; angle: 11.36; penumbra: 0.21" position="4.3 7.789 -0.016" rotation="-87.26147219842437 -0.2291831180523293 0.2864788975654116"></a-light>
+        <!-- luz cuadro 3 derecha -->
+        <a-light light="type: spot; color: #ffffff; intensity: 21.65; decay: 0.79; angle: 11.36; penumbra: 0.21" position="4.3 7.789 -2.788" rotation="-87.26147219842437 -0.2291831180523293 0.2864788975654116"></a-light>
+        <!-- luz ballena -->
+        <a-light light="type: spot; color: #ffffff; intensity: 21.65; decay: 0.79; angle: 11.36; penumbra: 0.21" position="0.201 25.784 -4.633" rotation="-87.26147219842437 -0.2291831180523293 0.２８６４７８８９７５６５４１１６"></a-light>
+     </a-scene>
+</body>
+</html>
