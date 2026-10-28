@@ -6,10 +6,17 @@
     <title>MUSEOCETACEOS</title>
     <!-- Libreria de Aframe -->
      <script src="https://aframe.io/releases/1.8.0/aframe.min.js"></script>
+     <!-- Componentes interactivos -->
+     <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+     <!-- Componentes audio -->
+     <script src="./scrips/componenteaudio.js"></script>
+     <!-- Para la musica y texto inicial -->
+      <link rel="stylesheet" href="./scrips/style.css">
 </head>
 <body>
     <!-- Aqui van los recursos del proyecto -->
      <a-assets>
+               <audio id="musica-ambiente" src="./assets/musica.mp3"></audio>
         <!-- Imagenes -->
         <img id="roof" src="assets/roof.jpg">
         <img id="wall" src="assets/wall.jpg">
@@ -30,13 +37,33 @@
         <img id="ficdel" src="assets/ficdel.jpg">
         <img id="ficazul" src="assets/ficazul.jpg">
         <img id="alfo" src="assets/alfombraremo.png">
+        <img id="parlante" src="assets/parlante.png">
+        <img id="wave" src="assets/wave.png">
         <img id="marco" src="assets/marcoremo.png">
+         <!-- Audios -->
+         <audio id="darbelu" src="./assets/darbelu.mp3" preload="auto"></audio>
+         <audio id="darnar" src="./assets/darnar.mp3" preload="auto"></audio>
+         <audio id="darjoro" src="./assets/darjor.mp3" preload="auto"></audio>
+         <audio id="darcacha" src="./assets/darcacha.mp3" preload="auto"></audio>
+         <audio id="darorca" src="./assets/darorca.mp3" preload="auto"></audio>
+         <audio id="dardel" src="./assets/dardel.mp3" preload="auto"></audio>
+         <audio id="darazul" src="./assets/darazul.mp3" preload="auto"></audio>
         <!-- Carga de Modelo 3D -->
         <a-assets-item id="mode" src="./assets/blue_whale_skeleton.glb"></a-assets-item>
      </a-assets>
     <!-- Escena del proyecto VR -->
      <a-scene xr-mode-ui="enterAREnabled: false">
-        <a-entity camera look-controls position="0 1.6 2.5"></a-entity>
+        <a-entity camera look-controls position="0 1.6 2.5">
+         <!-- cursor para activar la interaccion -->
+         <a-cursor color="white" fuse="true" fuse-timeout="1500"
+         raycaster="objects: .clicable; far: 15"
+         animation__fusing="property: scale; startEvents: fusing; from: 1 1 1; to: 0.2 0.2 0.2; dur: 1500; easing: linear"
+         animation__salir="property: scale; startEvents: mouseLeave; to: 1 1 1; dur: 200"
+         animation__clic="property: scale; startEvents: click; from 0.2 0.2 0.2; to 1 1 1; dur: 200"
+         ></a-cursor>
+        </a-entity>
+        <!-- Musica -->
+         <a-entity id="musica"sound="src: #musica-ambiente; loop: true; positional: false; volume: 0.03"></a-entity>
         <!-- 
         -------------------------------------
                 ESTRUCTURA DEL MUSEO 
@@ -66,22 +93,58 @@
         <!-- Cuadros -->
          <!-- Izquierda 1 -->
         <a-plane src="#belu" position="-4.886 2.264 2.788" rotation="0 90 0" width="2" height="2"></a-plane>
-        <a-plane src="#marco" position="-4.879 2.264 2.788" rotation="0 90 0" material="src: #marco; transparent: true" width="2.1" height="2.1"></a-plane>
+        <a-plane src="#marco" position="-4.879 2.264 2.788" rotation="0 90 0" material="src: #marco; transparent: true" width="2.1" height="2.1"></a-plane></a-plane>
+        <a-plane id="boton" class="clicable" src="#parlante" rotation="0 90 0" position="-4.452 0.653 3.939" material="transparent: true"
+        boton-audio 
+        sound="refDistance: 2; src: #darbelu"
+        animation__entrar="dur: 200; property: scale; startEvents: mouseEnter; to: 1.15"
+        animation__salir="dur: 200; property: scale; startEvents: mouseLeave; to: 1"
+        ></a-plane>
         <!-- Izquerda 2 -->
         <a-plane src="#nar" position="-4.886 2.264 -0.016" rotation="0 90 0" width="2" height="2"></a-plane>
         <a-plane src="#marco" position="-4.879 2.264 -0.016" rotation="0 90 0" material="src: #marco; transparent: true" width="2.1" height="2.1"></a-plane>
+        <a-plane id="boton" class="clicable" src="#parlante" rotation="0 90 0" position="-4.452 0.653 1.075" material="transparent: true"
+        boton-audio 
+        sound="refDistance: 2; src: #darnar"
+        animation__entrar="dur: 200; property: scale; startEvents: mouseEnter; to: 1.15"
+        animation__salir="dur: 200; property: scale; startEvents: mouseLeave; to: 1"
+        ></a-plane>
         <!-- Izquerda 3 -->
         <a-plane src="#joro" position="-4.886 2.264 -2.788" rotation="0 90 0" width="2" height="2"></a-plane>
         <a-plane src="#marco" position="-4.879 2.264 -2.788" rotation="0 90 0" material="src: #marco; transparent: true" width="2.1" height="2.1"></a-plane>
+         <a-plane id="boton" class="clicable" src="#parlante" rotation="0 90 0" position="-4.452 0.653 -1.789" material="transparent: true"
+        boton-audio 
+        sound="refDistance: 2; src: #darjoro"
+        animation__entrar="dur: 200; property: scale; startEvents: mouseEnter; to: 1.15"
+        animation__salir="dur: 200; property: scale; startEvents: mouseLeave; to: 1"
+        ></a-plane>
         <!-- Derecha 1 -->
         <a-plane src="#cacha" position="4.886 2.264 2.788" rotation="0 -90 0" width="2" height="2"></a-plane>
         <a-plane src="#marco" position="4.879 2.264 2.788" rotation="0 -90 0" material="src: #marco; transparent: true" width="2.1" height="2.1"></a-plane>
+         <a-plane id="boton" class="clicable" src="#parlante" rotation="0 -90 0" position="4.452 0.653 3.939" material="transparent: true"
+        boton-audio 
+        sound="refDistance: 2; src: #darcacha"
+        animation__entrar="dur: 200; property: scale; startEvents: mouseEnter; to: 1.15"
+        animation__salir="dur: 200; property: scale; startEvents: mouseLeave; to: 1"
+        ></a-plane>
         <!-- Derecha 2 -->
         <a-plane src="#orca" position="4.886 2.264 -0.016" rotation="0 -90 0" width="2" height="2"></a-plane>
         <a-plane src="#marco" position="4.879 2.264 -0.016" rotation="0 -90 0" material="src: #marco; transparent: true" width="2.1" height="2.1"></a-plane>
+        <a-plane id="boton" class="clicable" src="#parlante" rotation="0 -90 0" position="4.452 0.653 1.075" material="transparent: true"
+        boton-audio 
+        sound="refDistance: 2; src: #darorca"
+        animation__entrar="dur: 200; property: scale; startEvents: mouseEnter; to: 1.15"
+        animation__salir="dur: 200; property: scale; startEvents: mouseLeave; to: 1"
+        ></a-plane>
         <!-- Derecha 3 -->
         <a-plane src="#delf" position="4.886 2.264 -2.788" rotation="0 -90 0" width="2" height="2"></a-plane>
         <a-plane src="#marco" position="4.879 2.264 -2.788" rotation="0 -90 0" material="src: #marco; transparent: true" width="2.1" height="2.1"></a-plane>
+         <a-plane id="boton" class="clicable" src="#parlante" rotation="0 -90 0" position="4.452 0.653 -1.789" material="transparent: true"
+        boton-audio 
+        sound="refDistance: 2; src: #dardel"
+        animation__entrar="dur: 200; property: scale; startEvents: mouseEnter; to: 1.15"
+        animation__salir="dur: 200; property: scale; startEvents: mouseLeave; to: 1"
+        ></a-plane>
         <!-- Elementos 3D -->
          <!-- Atriles -->
           <!-- Atril Izquierda 1 -->
@@ -118,7 +181,12 @@
         <a-box color="white" position="-1.716 1.034 -2.671" rotation="31.02 0 0" scale="1.38 0.16 1.11" depth="1" height="1" width="1"></a-box>
         <a-cylinder color="white" position="-1.732 0.511 -2.621" rotation="0 0 0" scale="0.15 10.02 0.15" radius="0.5" height="0.1"></a-cylinder>
          <a-plane src="#ficazul" position="-1.716 1.103 -2.618" rotation="-59.15 0 0" scale="1.32 1.03 1.11" depth="1" height="1" width="1"></a-plane>
-         <!-- Luces -->
+         <a-plane id="boton" class="clicable" src="#parlante" rotation="-59.15 0 0" position="0.696 0.653 -2.618" material="transparent: true"
+         boton-audio
+         sound="refDistance: 2; src: #darazul"
+         animation__entrar="dur: 200; property: scale; startEvents: mouseEnter; to: 1.15"
+         animation__salir="dur: 200; property: scale; startEvents: mouseLeave; to: 1"
+         ></a-plane>
           <!-- ambientación -->
         <a-light light="type: ambient; color: #a9defe; intensity: 1.87" position="0 3.351 0"></a-light>
         <!-- luz cuadro 1 izquierda -->
@@ -135,6 +203,21 @@
         <a-light light="type: spot; color: #ffffff; intensity: 21.65; decay: 0.79; angle: 11.36; penumbra: 0.21" position="4.3 7.789 -2.788" rotation="-87.26147219842437 -0.2291831180523293 0.2864788975654116"></a-light>
         <!-- luz ballena -->
         <a-light light="type: spot; color: #ffffff; intensity: 21.65; decay: 0.79; angle: 11.36; penumbra: 0.21" position="0.201 25.784 -4.633" rotation="-87.26147219842437 -0.2291831180523293 0.２８６４７８８９７５６５４１１６"></a-light>
+
      </a-scene>
+     <button id="entrar">TOQUE PARA ENTRAR</button>
+     <script>
+      document.getElementById("entrar").addEventListener("click", function() {
+        THREE.AudioContext.getContext().resume();
+        document.querySelector("#musica").components.sound.playSound();
+        this.remove();
+      });
+      var entro = false;
+      document.addEventListener('visibilitychange', function() {
+      var contexto = THREE.AudioContext.getContext();
+      if (document.hidden) {contexto.suspend();}
+      else if (!entro) {contexto.resume();}
+      });
+     </script>
 </body>
 </html>
